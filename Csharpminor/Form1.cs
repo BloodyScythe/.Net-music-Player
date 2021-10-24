@@ -16,5 +16,15 @@ namespace Csharpminor
         {
             InitializeComponent();
         }
+
+        private void BtnMin_ShapeChanged(object sender, Bunifu.UI.WinForms.BunifuShapes.ShapeChangedEventArgs e)
+        {
+            bunifuFormDock1.WindowState = BunifuFormDock.FormWindowStates.Minimized;
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
