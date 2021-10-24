@@ -36,5 +36,36 @@ namespace Csharpminor
         {
 
         }
+
+        private void dataGridView1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(format: DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+        
+        private void dataGridView1_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(format: DataFormats.FileDrop);
+            foreach (string item in files)
+            {
+                FileInfo fi = new FileInfo(item);
+                TagLib.File f TagLib.File.Create(fi.FullName);
+                var r = picPlayer.Rows.Add(new object[]
+                {
+                    null,
+                    fi.Name,
+                    Math.Round(f.Properties.Duration.Totalminutes,2)+" Mins",
+                    f.Tag.JoiedGenres,
+                    f.Tag.JoinedAlbumArtist
+
+                });
+
+                picPlayer.Rows[r].Tag = fi;
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
